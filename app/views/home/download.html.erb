@@ -1,0 +1,66 @@
+<!-- Out of free basics popup-->
+<input type="checkbox" class="popup-toggle" id="websitePopupVisibility"/>
+<div class="popup">
+  <!-- Popup content -->
+  <div class="popup-content">
+    <div class="popup-header block-header-out">Out from Free Basics</div>
+    <!-- Popup message -->
+    <div class="popup-text text-content message-panel text-content-message">
+      This will take you out of Free Basics by Facebook and to the Bible.is website. Your device will need to use data outside of this system.
+      <br/><br/>
+      Would you like to continue?
+    </div>
+    <!-- Poup buttons -->
+    <ul class="l-seperated-blocks reduced alternate-buttons">
+      <li>
+        <!-- Link to app store -->
+        <a href="https://play.google.com/store/apps/details?id=com.faithcomesbyhearing.android.bibleis"
+           class="block-button btn-primary">Yes</a>
+      </li>
+      <!-- Close button -->
+      <li><label for="websitePopupVisibility" class="block-button btn-secondary">No</label></li>
+    </ul>
+  </div>
+</div>
+
+<%= render 'request_confirmation' %>
+
+<!-- Site header -->
+<header class="site-header l-fixed">
+  <a href="<%= home_index_path %>" class="btn-home btn-header-home"></a>
+  <h1 class="site-heading">Bible.is</h1>
+</header>
+
+<!-- Main page content -->
+<main class="l-fluid l-vertical">
+  <div class="content-panel l-fluid">
+    <h2 class="page-heading icon-page-heading icon-download">Download Bible App</h2>
+
+    <!-- button to for showing navigation warning -->
+    <label for="websitePopupVisibility" class="block-button btn-android btn-secondary">Download App</label>
+
+    <div class="text-content message-panel text-content-message">
+        Or you may fill your email/phone number below so we can send the download link.
+    </div>
+
+    <!-- Alternative download form -->
+    <form class="form-panel">
+      <div class="block-input-wrapper icon-input-wrapper email-input-wrapper">
+          <input type="email" class="block-input custom-input" placeholder="Email address"/>
+      </div>
+      <div class="block-input-wrapper icon-input-wrapper phone-input-wrapper">
+          <input type="tel" class="block-input custom-input" placeholder="Phone number"/>
+      </div>
+      <label for="requestConfirmation" class="btn-submit">Send Link</label>
+    </form>
+  </div>
+
+  <!-- Page footer -->
+  <footer class="footer-panel l-fixed">
+    <div class="footer-heading">Also available on</div>
+    <ul class="l-row l-inline l-spaced">
+      <li><a href="https://itunes.apple.com/us/app/bible/id378075859" class="btn-app-store">App Store</a></li>
+      <li><a href="http://www.amazon.com/Faith-Comes-By-Hearing-Bible-is/dp/B004KNAS7I" class="btn-amazon">amazon.com</a></li>
+    </ul>
+  </footer>
+</main>

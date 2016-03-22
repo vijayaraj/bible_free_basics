@@ -1,0 +1,14 @@
+defaults: &defaults
+  host: http://dbt.io
+  version: 2
+  key: eb3239a7edf4ffd35d158232efcb0891
+  book_id: Mark
+  verse_dam_id: ENGESVN2ET
+  audio_dam_id: ENGESVN2DA
+
+development:
+  <<: *defaults
+test:
+  <<: *defaults
+production:
+  <<: *defaults

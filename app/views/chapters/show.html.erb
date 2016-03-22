@@ -1,0 +1,84 @@
+<!-- Play chapter popup -->
+<div class="popup" data-popup-autoshow>
+  <button class="btn-play-center" data-play="audioPlayer" data-popup-close>Play Mark Chapter 1</button>
+  <button class="btn-close-bottom" data-popup-close>No, I want to browse the apps myself</button>
+</div>
+
+<!-- Site header -->
+<header class="site-header l-fixed">
+  <a href="<%= home_index_path %>" class="btn-home btn-header-home"></a>
+  <h1 class="site-heading">Bible.is</h1>
+</header>
+
+<!-- Main content -->
+<article class="l-fluid l-vertical">
+  <header class="l-fixed panel">
+    <!-- Page header -->
+    <input type="checkbox" class="pager-menu-dropdown" id="cbChaptersDropdown"/>
+    <div class="pager">
+      <a href="<%= chapter_path(params[:id].to_i - 1) %>" class="btn-pager btn-previous <%= params[:id].to_i.eql?(1) ? 'is-disabled' : '' %>"></a>
+      <a href="<%= chapter_path(params[:id].to_i + 1) %>" class="btn-pager btn-next <%= params[:id].to_i.eql?(16) ? 'is-disabled' : '' %>"></a>
+      <h2 class="chapter-heading">MARK</h2>
+      <label class="btn-dropdown" for="cbChaptersDropdown">Chapter <%= params[:id] %></label>
+    </div>
+
+    <!-- Chapter navigation dropdown -->
+    <nav class="dropdown-content">
+      <span class="dropdown-heading">CHAPTER SELECTION</span>
+      <ul class="l-inline-list">
+        <% 16.times do |index| %>
+          <li>
+            <a href="<%= chapter_path(index+1) %>" class="chapter-link <%= (index+1).eql?(params[:id].to_i) ? 'is-active' : '' %>">
+              <%= index+1 %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <% if @verses.nil? %>
+    <div class="text-content dark-theme l-fluid main-text-content">
+      <p> Error while accessing Digital Bible Text library </p>
+    </div>
+  <% else %>
+    <!-- Chapter text -->
+    <div class="text-content dark-theme l-fluid main-text-content">
+      <% p_id = @verses[0]["paragraph_number"] %>
+      <p>
+        <% @verses.each do |verse| %>
+          <% if p_id != verse["paragraph_number"] %>
+            <% p_id = verse["paragraph_number"] %></p><p>
+          <% end %>
+          <span class="verse-marker"><%= verse["verse_id"] %></span><%= verse["verse_text"] %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+
+  <% if @audio.nil? %>
+    <div class="text-content l-fluid main-text-content">
+      <p> Error while accessing Digital Bible Audio library </p>
+    </div>
+  <% else %>
+    <ul class="audio-player-controls l-row l-fixed" data-for="audioPlayer">
+      <li><button class="btn-rewind"></button></li>
+      <li><button class="btn-play"></button></li>
+      <li><button class="btn-forward"></button></li>
+      <li class="audio-slider l-fluid"><span class="btn-knob"></span></li>
+      <li class="audio-timer">00:00</li>
+    </ul>
+    <!-- Audio player -->
+    <audio controls="controls" class="audio-player l-fixed" id="audioPlayer">
+      <source src="<%= %(http://fcbhabdm.s3.amazonaws.com/mp3audiobibles2/#{@audio[0]["path"]}) %>" type="audio/mp3"/>
+
+      Audio playback not available on your device.<br/>
+      <a href="<%= %(http://fcbhabdm.s3.amazonaws.com/mp3audiobibles2/#{@audio[0]["path"]}) %>">Download audio directly.</a>
+    </audio>
+    <noscript>
+      <style type="text/css">
+        .audio-player-controls { display:none; }
+      </style>
+    </noscript>
+  <% end %>
+</article>

@@ -1,0 +1,16 @@
+<%= render "website_popup" %>
+
+<!-- Site header (landing page) -->
+<header class="site-header landing-site-header site-heading">Bible.is</header>
+
+<!-- Main navigation -->
+<nav>
+   <ul class="l-offset-panel">
+       <li><a href="<%= chapter_path(1) %>" class="landing-link landing-link-bible">Bible</a></li>
+       <li><a href="<%= download_home_index_path %>" class="landing-link landing-link-app">Download Bible App</a></li>
+       <li><label for="websitePopupVisibility" class="landing-link landing-link-website">Bible Website</label></li>
+       <li><a href="<%= share_home_index_path %>" class="landing-link landing-link-share">Share</a></li>
+       <li><a href="<%= about_home_index_path %>" class="landing-link landing-link-about">About Bible.is</a></li>
+   </ul>
+   <!-- use this to include "out of free basics" message for="aboutPopupVisibility" -->
+</nav>
