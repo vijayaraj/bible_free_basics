@@ -27,5 +27,6 @@ module BibleApp
     # config.active_record.raise_in_transactional_callbacks = true
     config.eager_load_paths += Dir["#{config.root}/lib"]
     config.autoload_paths += Dir["#{config.root}/lib"]
+    config.serve_static_assets = true
   end
 end
